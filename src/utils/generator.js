@@ -10,18 +10,7 @@ export function generateText(elements, relationships) {
     })    
   })
   relationships.forEach(rel => {
-    const from = elements.find(e => e.id === rel.from);
-    const to = elements.find(e => e.id === rel.to);
-
-    if (!from || !to) return;
-
-    if (rel.type === "inheritance") {
-      text.push(`${from.name} inherits from ${to.name}`);
-    }
-
-    if (rel.type === "association") {
-      text.push(`${from.name} is associated with ${to.name}`);
-    }
+    text.push(`Thier is a ${rel.type} relationship between ${rel.from} and ${rel.to}`)
   });
 
   return text.join(". ");

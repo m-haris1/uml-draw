@@ -4,6 +4,7 @@ export default function Toolbar({ addElement, generate }) {
       <button onClick={() => addElement("class")}>Add Class</button>
       <button onClick={() => addElement("interface")}>Add Interface</button>
       <button onClick={generate}>Generate Text</button>
+
     </div>
   );
 }

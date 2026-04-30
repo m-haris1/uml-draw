@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
-export default function Element({ element, addAttrToClass,updatePosition, deleteElement }) {
+export default function Element({ element, addAttrToClass,updatePosition, deleteElement,onSelectItem,
+  isSelected }) {
   const [dragging, setDragging] = useState(false);
 
 
@@ -22,6 +23,7 @@ export default function Element({ element, addAttrToClass,updatePosition, delete
 
   // Attach listeners to document
   useEffect(() => {
+
     if (dragging) {
       document.addEventListener("mousemove", onMouseMove);
       document.addEventListener("mouseup", onMouseUp);
@@ -37,12 +39,13 @@ export default function Element({ element, addAttrToClass,updatePosition, delete
   return (
     <div
       onMouseDown={onMouseDown}
+      onClick={()=> onSelectItem(element.id)}
       style={{
         position: "absolute",
         top: element?.position?.y,
         left: element?.position?.x,
         width: element?.size?.width,
-        border: "2px solid black",
+        border: isSelected ? "2px solid blue" : "1px solid black",
         background: "white",
         padding: "8px",
         cursor: dragging ? "grabbing" : "grab",

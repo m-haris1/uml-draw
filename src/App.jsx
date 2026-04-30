@@ -28,6 +28,8 @@ export default function App() {
         updatePosition={diagram.updatePosition}
         deleteElement={diagram.deleteElement}
       />
+
+      
     </div>
   );
 }
