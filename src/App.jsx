@@ -1,6 +1,7 @@
 import useDiagram from "./state/useDiagram";
 import Canvas from "./components/Canvas";
 import Toolbar from "./components/Toolbar";
+import ConnectionLayer from "./components/ConnectionLayer"
 import { generateText } from "./utils/generator";
 
 export default function App() {
@@ -27,6 +28,11 @@ export default function App() {
         addRelationship={diagram.addRelationship}
         updatePosition={diagram.updatePosition}
         deleteElement={diagram.deleteElement}
+      />
+
+      <ConnectionLayer
+        elements={diagram.elements}
+        relationships={diagram.relationships}
       />
 
       

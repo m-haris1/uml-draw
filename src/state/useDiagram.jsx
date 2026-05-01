@@ -17,6 +17,9 @@ export default function useDiagram() {
             size:{ width: 150, height:100}
         };
         setElements((prev)=>[...prev,newElement]);
+        console.log("New Element ")
+        console.log("x ",newElement.position.x)
+        console.log("y ",newElement.position.y)
     }
     function addAttrToClass(id) {
         const attributeName = prompt("Please enter attribute name");
@@ -37,6 +40,10 @@ export default function useDiagram() {
         );
     }
     function updatePosition(id,x,y){
+        console.log("Updated Position")
+        console.log("x ",x)
+        console.log("y ",y)
+
         setElements((prev)=>
         prev.map((el)=>
         el.id===id ?
