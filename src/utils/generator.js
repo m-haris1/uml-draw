@@ -1,7 +1,6 @@
-export function generateText() {
+export function generateText(elements,relationships) {
   let text = [];
-  elements=useElementStore((state) => state.element);
-  relationships=useRelnStore((state) => state.reln)
+
   elements.forEach(ele =>{
     text.push(`Thier is an element of type ${ele.type} and has name ${ele.name}`)
     ele.attributes.forEach((data)=>{

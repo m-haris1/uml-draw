@@ -3,10 +3,14 @@ import Canvas from "./components/Canvas";
 import Toolbar from "./components/Toolbar";
 import ConnectionLayer from "./components/ConnectionLayer"
 import { generateText } from "./utils/generator";
+import {useElementStore} from "./slice/elementSlice"
+import {useRelnStore} from "./slice/relationSlice"
 export default function App() {
   const diagram =useDiagram()
+  const elements=useElementStore((state) => state.element);
+  const relationships=useRelnStore((state) => state.reln)
   function handleGenerate() {
-    const text = generateText();
+    const text = generateText(elements,relationships);
     alert(text);
   }
 

@@ -28,9 +28,6 @@ export default function useDiagram() {
         };
         // setElements((prev)=>[...prev,newElement]);
         addEle(newElement)
-        console.log("New Element ")
-        console.log("x ",newElement.position.x)
-        console.log("y ",newElement.position.y)
     }
     function addAttrToClass(id) {
         const attributeName = prompt("Please enter attribute name");
@@ -46,10 +43,6 @@ export default function useDiagram() {
 
     }
     function updatePosition(id,x,y){
-        console.log("Updated Position")
-        console.log("x ",x)
-        console.log("y ",y)
-        
         updatePos(id,x,y)
     }
     function deleteElement(id){
