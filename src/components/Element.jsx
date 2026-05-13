@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 export default function Element({ element, addAttrToClass,updatePosition, deleteElement,onSelectItem,
-  isSelected }) {
+  isSelected, addMethodToClass }) {
   const [dragging, setDragging] = useState(false);
 
 
@@ -79,7 +79,10 @@ export default function Element({ element, addAttrToClass,updatePosition, delete
       }
 
       <button onClick={() => deleteElement(element.id)}>X</button>
-      <button onClick={() => addAttrToClass(element.id)}>Add Attribute</button>
+      <div>
+        <button onClick={() => addAttrToClass(element.id)}>Add Attribute</button>
+        <button onClick={() => addMethodToClass(element.id)}>Add Method</button>
+      </div>
     </div>
   );
 }

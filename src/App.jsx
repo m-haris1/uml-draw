@@ -5,13 +5,9 @@ import ConnectionLayer from "./components/ConnectionLayer"
 import { generateText } from "./utils/generator";
 
 export default function App() {
-  const diagram = useDiagram();
 
   function handleGenerate() {
-    const text = generateText(
-      diagram.elements,
-      diagram.relationships
-    );
+    const text = generateText();
     alert(text);
   }
 
@@ -28,6 +24,7 @@ export default function App() {
         addRelationship={diagram.addRelationship}
         updatePosition={diagram.updatePosition}
         deleteElement={diagram.deleteElement}
+        addMethodToClass={diagram.addMethodToClass}
       />
 
       <ConnectionLayer

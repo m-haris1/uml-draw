@@ -1,10 +1,20 @@
 import { useState } from "react";
 import { v4 as uuid } from "uuid";
 
-export default function useDiagram() {
-    const [elements, setElements] = useState([]);
-    const [relationships,setRelationships]= useState([]);
+import {useElementStore} from "../slice/elementSlice"
+import {useRelnStore} from "../slice/relationSlice"
 
+export default function useDiagram() {
+    const elements = useElementStore((state) => state.element);
+    const relationships= useRelnStore((state) => state.reln)
+    const addEle=useElementStore((state) => state.addElement);
+    const updatePos =  useElementStore((state) => state.updatePos);
+    const addAttrToClassFunc=useElementStore((state) => state.addAtt);
+    const deleteEle=useElementStore((state) => state.removeElement);
+    const deleteReln= useRelnStore((state) => state.removeReln)
+    const addReln= useRelnStore((state) => state.removeReln)
+    const addMethodAndDesc= useElementStore((state) => state.addMethod);
+    
     function addElement(type){
         const userName = prompt(`Please enter the name of ${type}`);
         const newElement= {
@@ -16,7 +26,8 @@ export default function useDiagram() {
             position: {x:100, y:100},
             size:{ width: 150, height:100}
         };
-        setElements((prev)=>[...prev,newElement]);
+        // setElements((prev)=>[...prev,newElement]);
+        addEle(newElement)
         console.log("New Element ")
         console.log("x ",newElement.position.x)
         console.log("y ",newElement.position.y)
@@ -24,42 +35,29 @@ export default function useDiagram() {
     function addAttrToClass(id) {
         const attributeName = prompt("Please enter attribute name");
         if (!attributeName) return;
+ 
+        addAttrToClassFunc(id,attributeName)
+    }
+    function addMethodToClass(id){
+        const methodName = prompt("Please enter method name");
+        const desc= prompt(`Please enter some description about of the method ${methodName}`)
+        if(!methodName) return;
+        addMethodAndDesc(id,methodName,desc)
 
-        setElements((prev) =>
-            prev.map((data) =>
-                data.id === id
-                    ? {
-                        ...data,
-                        attributes: [
-                            ...data.attributes,
-                            { name: attributeName }
-                        ]
-                    }
-                    : data
-            )
-        );
     }
     function updatePosition(id,x,y){
         console.log("Updated Position")
         console.log("x ",x)
         console.log("y ",y)
-
-        setElements((prev)=>
-        prev.map((el)=>
-        el.id===id ?
-        ({...el,position:{x,y}}):
-        (el))
-        )
+        
+        updatePos(id,x,y)
     }
     function deleteElement(id){
         // Delete Element
-        setElements((prev)=>
-        prev.filter((r)=> r.id !== id));
+        deleteEle(id)
 
         // Delete Relationship
-        setRelationships(prev =>
-        prev.filter(r => r.from !== id && r.to !== id)
-        );
+        deleteReln(id)
     }
 
     function addRelationship(from, to, type) {
@@ -69,7 +67,7 @@ export default function useDiagram() {
       to,
       type: type
     };
-    setRelationships(prev => [...prev, rel]);
+    addReln(rel);
     }
     return {
         elements,
@@ -78,6 +76,7 @@ export default function useDiagram() {
         updatePosition,
         deleteElement,
         addAttrToClass,
-        addRelationship
+        addRelationship,
+        addMethodToClass
     };
 }
