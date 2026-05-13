@@ -3,9 +3,8 @@ import Canvas from "./components/Canvas";
 import Toolbar from "./components/Toolbar";
 import ConnectionLayer from "./components/ConnectionLayer"
 import { generateText } from "./utils/generator";
-
 export default function App() {
-
+  const diagram =useDiagram()
   function handleGenerate() {
     const text = generateText();
     alert(text);
