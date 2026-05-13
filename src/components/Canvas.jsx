@@ -10,6 +10,7 @@ export default function  Canvas({
   addAttrToClass,
   addRelationship,
   updatePosition,
+  addMethodToClass,
   deleteElement
 }) {
   const [selectedElements, setSelectedElements] = useState([]);
@@ -53,6 +54,7 @@ export default function  Canvas({
           addRelationship={addRelationship}
           updatePosition={updatePosition}
           deleteElement={deleteElement}
+          addMethodToClass={addMethodToClass}
           onSelectItem={(id)=>{
             setSelectedElements((prev)=>{
               if (prev.includes(id)) {
