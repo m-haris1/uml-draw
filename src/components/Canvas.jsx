@@ -18,6 +18,7 @@ export default function  Canvas({
   const [relnType,setRelnType]= useState(relationEnum.EXTENDS)
   useEffect(() =>{
     if(selectedElements.length === 2){
+      // See if both are 
       // open dialog box
       setDialogBox(true)
     }
@@ -25,6 +26,7 @@ export default function  Canvas({
 
 
   const handleCreateRelation = () => {
+    
     addRelationship(
       selectedElements[0],
       selectedElements[1],
@@ -56,6 +58,7 @@ export default function  Canvas({
           deleteElement={deleteElement}
           addMethodToClass={addMethodToClass}
           onSelectItem={(id)=>{
+            // If selected item is one of the 
             setSelectedElements((prev)=>{
               if (prev.includes(id)) {
                 return prev.filter(x => x !== id); // unselect
@@ -74,7 +77,7 @@ export default function  Canvas({
             {dialogBox && (
         <div
           style={{
-            position: "absolute",
+            position: "fixed",
             top: "20px",
             right: "20px",
             background: "white",

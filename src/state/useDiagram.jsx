@@ -12,7 +12,7 @@ export default function useDiagram() {
     const addAttrToClassFunc=useElementStore((state) => state.addAtt);
     const deleteEle=useElementStore((state) => state.removeElement);
     const deleteReln= useRelnStore((state) => state.removeReln)
-    const addReln= useRelnStore((state) => state.removeReln)
+    const addReln= useRelnStore((state) => state.addReln)
     const addMethodAndDesc= useElementStore((state) => state.addMethod);
     
     function addElement(type){
@@ -43,6 +43,8 @@ export default function useDiagram() {
 
     }
     function updatePosition(id,x,y){
+
+        
         updatePos(id,x,y)
     }
     function deleteElement(id){
