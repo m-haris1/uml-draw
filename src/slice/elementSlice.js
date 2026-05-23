@@ -11,6 +11,7 @@ export const useElementStore = create(
           element: [
             ...state.element,
             {
+              id: crypto.randomUUID(),
               ...data,
               attributes: data.attributes || [],
               methods: data.methods || [],
@@ -38,6 +39,7 @@ export const useElementStore = create(
                   attributes: [
                     ...(el.attributes || []),
                     {
+                      id: crypto.randomUUID(),
                       type: "Attribute",
                       name: attributeName,
                     },
@@ -56,6 +58,7 @@ export const useElementStore = create(
                   methods: [
                     ...(el.methods || []),
                     {
+                      id: crypto.randomUUID(),
                       type: "Method",
                       name: methodName,
                       description: methodDesc,
@@ -94,6 +97,13 @@ export const useElementStore = create(
           el
           ),
         })),
+
+        clearTheElement : (elementId) => 
+          set((state) =>({
+            element : state.element.filter (
+              (el) => el.id !==elementId
+            )
+          }))
     }),
     {
       name: "element-storage",

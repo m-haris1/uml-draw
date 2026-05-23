@@ -14,7 +14,9 @@ export default function useDiagram() {
     const deleteReln= useRelnStore((state) => state.removeReln)
     const addReln= useRelnStore((state) => state.addReln)
     const addMethodAndDesc= useElementStore((state) => state.addMethod);
-    
+    const removeEle= useElementStore((state) => state.clearTheElement);
+
+
     function addElement(type){
         const userName = prompt(`Please enter the name of ${type}`);
         const newElement= {
@@ -49,10 +51,10 @@ export default function useDiagram() {
     }
     function deleteElement(id){
         // Delete Element
-        deleteEle(id)
+        removeEle(id)
 
         // Delete Relationship
-        deleteReln(id)
+        // deleteReln(id)
     }
 
     function addRelationship(from, to, type) {
