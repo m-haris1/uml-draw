@@ -1,4 +1,10 @@
-export default function Toolbar({ addElement, generate }) {
+function handleClear(clearEle,clearReln){
+  clearEle();
+  clearReln();
+}
+
+
+export default function Toolbar({ addElement, generate, clearEle, clearReln }) {
   return (
     <div style={{
       padding: "10px",
@@ -15,6 +21,17 @@ export default function Toolbar({ addElement, generate }) {
       <button onClick={() => addElement("class")}>Add Class</button>
       <button onClick={() => addElement("interface")}>Add Interface</button>
       <button onClick={generate}>Generate Text</button>
+      <button
+        onClick={() => {
+          clearEle();
+          clearReln();
+        }}
+      >
+        Clear
+      </button>
+
+
+
 
     </div>
   );

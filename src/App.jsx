@@ -65,6 +65,8 @@ return (
       <Toolbar
         addElement={diagram.addElement}
         generate={handleGenerate}
+        clearEle = {diagram.clearEle}
+        clearReln = {diagram.clearRelationship}
       />
     </div>
 

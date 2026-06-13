@@ -5,6 +5,7 @@ import {useElementStore} from "../slice/elementSlice"
 import {useRelnStore} from "../slice/relationSlice"
 
 export default function useDiagram() {
+    const clearEle= useElementStore((state) => state.clearElement)
     const elements = useElementStore((state) => state.element);
     const relationships= useRelnStore((state) => state.reln)
     const addEle=useElementStore((state) => state.addElement);
@@ -15,6 +16,7 @@ export default function useDiagram() {
     const addReln= useRelnStore((state) => state.addReln)
     const addMethodAndDesc= useElementStore((state) => state.addMethod);
     const removeEle= useElementStore((state) => state.clearTheElement);
+    const clearRelationship = useRelnStore((state) => state.clearReln)
 
 
     function addElement(type){
@@ -74,6 +76,8 @@ export default function useDiagram() {
         deleteElement,
         addAttrToClass,
         addRelationship,
-        addMethodToClass
+        addMethodToClass,
+        clearRelationship,
+        clearEle,
     };
 }

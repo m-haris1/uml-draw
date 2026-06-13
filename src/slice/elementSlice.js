@@ -18,6 +18,12 @@ export const useElementStore = create(
             },
           ],
         })),
+      
+      getNameById: (id) => {
+        const element = get().element.find((el) => el.id === id);
+        return element ? element.name : null;
+      },
+        
 
       clearElement: () => set({ element: [] }),
 
